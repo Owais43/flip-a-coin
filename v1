@@ -1,0 +1,53 @@
+import random
+
+def flip_coin():
+    return random.choice(["Heads", "Tails"])
+
+def flip_multiple_coins(num_flips):
+    results = {"Heads": 0, "Tails": 0}
+
+    for _ in range(num_flips):
+        result = flip_coin()
+        results[result] += 1
+
+    return results
+
+def display_results(results, num_flips):
+    print(f"\nResults after {num_flips} flips:")
+    print(f"Heads: {results['Heads']} ({(results['Heads'] / num_flips) * 100:.2f}%)")
+    print(f"Tails: {results['Tails']} ({(results['Tails'] / num_flips) * 100:.2f}%)")
+
+def main():
+    print("Welcome to the Coin Flip Simulator!")
+
+  
+    while True:
+        try:
+            num_flips = int(input("How many times would you like to flip the coin? "))
+            if num_flips <= 0:
+                print("Please enter a positive number.")
+            else:
+                break
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+   
+    results = flip_multiple_coins(num_flips)
+
+ 
+    display_results(results, num_flips)
+
+  
+    while True:
+        again = input("\nWould you like to flip again? (yes/no): ").lower()
+        if again == "yes":
+            main() 
+        elif again == "no":
+            print("Thank you for using the Coin Flip Simulator! Goodbye!")
+            break
+        else:
+            print("Please enter 'yes' or 'no'.")
+
+
+if __name__ == "__main__":
+    main()
